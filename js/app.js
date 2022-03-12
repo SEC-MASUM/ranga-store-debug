@@ -212,6 +212,7 @@ const loadProducts = () => {
 
 // show all product in UI
 const showProducts = (products) => {
+  document.getElementById("all-products").textContent = "";
   // const allProducts = products.map((pd) => pd);
   console.log(products);
   for (const product of products) {
