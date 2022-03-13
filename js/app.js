@@ -208,20 +208,30 @@ const loadProducts = () => {
     },
   ];
   showProducts(data);
+  searchProduct(data);
 };
 
+const searchProduct = (data) => {
+  const searchText = document.getElementById("input-field").value;
+  console.log(searchText);
+  const searchResult = data.filter((element) =>
+    element.title.includes(searchText)
+  );
+  console.log(searchResult);
+  showProducts(searchResult);
+};
 // show all product in UI
 const showProducts = (products) => {
   document.getElementById("all-products").textContent = "";
   // const allProducts = products.map((pd) => pd);
-  console.log(products);
+  // console.log(products);
   for (const product of products) {
-    const image = product.images;
+    const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
       <div>
-    <img class="product-image" src=${product.image}></img>
+    <img class="product-image" src=${image}></img>
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
@@ -275,6 +285,7 @@ const updateTaxAndCharge = () => {
     setInnerText("delivery-charge", 60);
     setInnerText("total-tax", priceConverted * 0.4);
   }
+  updateTotal();
 };
 
 //grandTotal update function
